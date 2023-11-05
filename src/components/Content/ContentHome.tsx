@@ -4,13 +4,22 @@ import CartContainer from "../Cart/CartContainer";
 import Footer from "../footer/Footer";
 import * as S from "./StyleContent";
 import Menu from "../Header/Menu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ContentHome() {
-    const numberElements = JSON.parse(localStorage.getItem("cart") || "[]");
+
+
+    const teste = () => {
+        const numberElements = JSON.parse(localStorage.getItem("cart") || "[]");
+        setCartItemCount(numberElements.length);
+    }
+
+    useEffect(() => {
+        teste();
+    }, [])
 
     const [openMenu, setOpenMenu] = useState(false);
-    const [cartItemCount, setCartItemCount] = useState(numberElements.length);
+    const [cartItemCount, setCartItemCount] = useState(0);
 
     const handleOpenMenu = () => {
         setOpenMenu(true);
