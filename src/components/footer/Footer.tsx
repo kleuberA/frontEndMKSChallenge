@@ -1,9 +1,6 @@
 import * as S from "./Style.Footer";
 
-interface FooterProps {
-
-}
-export default function Footer(props: FooterProps) {
+export default function Footer() {
     return (
         <S.ContainerFooter>
             <S.TextFooter>

@@ -1,8 +1,8 @@
 "use client"
+import LoadingCard from "./LoadingCard";
 import { useQuery } from "react-query";
 import * as S from "./StyleProduct";
 import Image from "next/image";
-import LoadingCard from "./LoadingCard";
 
 
 interface CardProductsProps {
@@ -49,7 +49,7 @@ export default function CardProducts(props: CardProductsProps) {
     return (
         <S.ContainerCardProducts>
             <S.ContainerFlexCards>
-                {data.products.map((element: any, key: any) => {
+                {data.products.map((element: any, key: number) => {
                     let price = parseFloat(element.price);
                     return (
                         <S.CardProduct key={key} data-testid="products">

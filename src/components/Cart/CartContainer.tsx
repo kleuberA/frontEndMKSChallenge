@@ -1,8 +1,8 @@
 "use client"
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import * as S from "./Style.cart";
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 interface CartContainerProps {
     menu: any;
@@ -102,50 +102,60 @@ export default function CartContainer(props: CartContainerProps) {
                         </S.ContainerSemItems>
                     </motion.div>
                 ) : (
-                    <S.ListCartItems>
-                        {listItemsCart.map((element: any, key: number) => {
-                            let price = parseFloat(element.price);
-                            return (
-                                <S.ItemCart key={key}>
-                                    <S.RemoveItemCart onClick={() => handleRemoveItemListCart(element.id)}>
-                                        <S.IconClose>X</S.IconClose>
-                                    </S.RemoveItemCart>
-                                    <S.ContainerItemCart>
-                                        <S.ImageProduct>
-                                            <Image className="imageProduct" src={element.photo} alt={"Imagem ilustrativa de um produto."} width={60} height={60} />
-                                        </S.ImageProduct>
-                                        <S.NameProductItemCart>
-                                            <S.TextNameProductItem>{element.brand}{" "}{element.name}</S.TextNameProductItem>
-                                        </S.NameProductItemCart>
-                                        <S.ContainerElementsInfosProducts>
-                                            <S.QuantityProduct>
-                                                <S.QuantityContainerText>
-                                                    <S.QuantityTextNameSection>Qtd:</S.QuantityTextNameSection>
-                                                </S.QuantityContainerText>
-                                                <S.ContainerElementQuantity>
-                                                    <S.QuantityButton onClick={() => handleButtonRemoveQuantity(element.id)}>-</S.QuantityButton>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="12" viewBox="0 0 2 12" fill="none">
-                                                        <path d="M1 0V11.5" stroke="#BFBFBF" strokeWidth="0.2" />
-                                                    </svg>
-                                                    <S.QuantityValue>{element.quantity}</S.QuantityValue>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="12" viewBox="0 0 2 12" fill="none">
-                                                        <path d="M1 0V11.5" stroke="#BFBFBF" strokeWidth="0.2" />
-                                                    </svg>
-                                                    <S.QuantityButton onClick={() => handleButtonAddQuantity(element.id)}>+</S.QuantityButton>
-                                                </S.ContainerElementQuantity>
-                                            </S.QuantityProduct>
-                                            <S.PriceProduct>
-                                                <S.TextPrice>R$ {price}</S.TextPrice>
-                                            </S.PriceProduct>
-                                        </S.ContainerElementsInfosProducts>
-                                    </S.ContainerItemCart>
-                                </S.ItemCart>
-                            )
-                        })}
-                    </S.ListCartItems>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <S.ListCartItems>
+                            {listItemsCart.map((element: any, key: number) => {
+                                let price = parseFloat(element.price);
+                                return (
+                                    <S.ItemCart key={key}>
+                                        <S.RemoveItemCart onClick={() => handleRemoveItemListCart(element.id)}>
+                                            <S.IconClose>X</S.IconClose>
+                                        </S.RemoveItemCart>
+                                        <S.ContainerItemCart>
+                                            <S.ImageProduct>
+                                                <Image className="imageProduct" src={element.photo} alt={"Imagem ilustrativa de um produto."} width={60} height={60} />
+                                            </S.ImageProduct>
+                                            <S.NameProductItemCart>
+                                                <S.TextNameProductItem>{element.brand}{" "}{element.name}</S.TextNameProductItem>
+                                            </S.NameProductItemCart>
+                                            <S.ContainerElementsInfosProducts>
+                                                <S.QuantityProduct>
+                                                    <S.QuantityContainerText>
+                                                        <S.QuantityTextNameSection>Qtd:</S.QuantityTextNameSection>
+                                                    </S.QuantityContainerText>
+                                                    <S.ContainerElementQuantity>
+                                                        <S.QuantityButton onClick={() => handleButtonRemoveQuantity(element.id)}>-</S.QuantityButton>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="2" height="12" viewBox="0 0 2 12" fill="none">
+                                                            <path d="M1 0V11.5" stroke="#BFBFBF" strokeWidth="0.2" />
+                                                        </svg>
+                                                        <S.QuantityValue>{element.quantity}</S.QuantityValue>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="2" height="12" viewBox="0 0 2 12" fill="none">
+                                                            <path d="M1 0V11.5" stroke="#BFBFBF" strokeWidth="0.2" />
+                                                        </svg>
+                                                        <S.QuantityButton onClick={() => handleButtonAddQuantity(element.id)}>+</S.QuantityButton>
+                                                    </S.ContainerElementQuantity>
+                                                </S.QuantityProduct>
+                                                <S.PriceProduct>
+                                                    <S.TextPrice>R$ {price}</S.TextPrice>
+                                                </S.PriceProduct>
+                                            </S.ContainerElementsInfosProducts>
+                                        </S.ContainerItemCart>
+                                    </S.ItemCart>
+                                )
+                            })}
+                        </S.ListCartItems>
+                    </motion.div>
                 )}
                 {listItemsCart.length != 0 &&
-                    <>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                    >
                         <S.ContainerTotalValor>
                             <S.TextNameSection>Total:</S.TextNameSection>
                             <S.TextValor>R$ {calculateTotal()}</S.TextValor>
@@ -154,7 +164,7 @@ export default function CartContainer(props: CartContainerProps) {
                         <S.ContainerFooter>
                             <S.ButtonFinalizarCompra>Finalizar Compra</S.ButtonFinalizarCompra>
                         </S.ContainerFooter>
-                    </>
+                    </motion.div>
                 }
             </S.ContainerCart>
         </motion.div>

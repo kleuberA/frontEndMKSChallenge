@@ -51,7 +51,10 @@ export const CardComprarProduct = styled.div`
 	color: #ffffff;
 	cursor: pointer;
 	gap: 10px;
-	transition: all;
+	transition: 1s;
+	&:hover {
+		background-color: #429ab3;
+	}
 `;
 
 export const TextComprar = styled.span`
